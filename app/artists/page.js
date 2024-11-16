@@ -1,7 +1,14 @@
-export default function Artists() {
+import ArtistCard from "@/components/ArtistCard";
+
+export default async function Artists() {
+    const res = await fetch('https://qevent-backend.labs.crio.do/artists')
+    const artists = await res.json()
+    console.log(artists)
     return (
-        <div>
-            <h1>Artists Page</h1>
+        <div className="flex flex-wrap justify-center">
+            {artists.map(artist => (
+                <ArtistCard artistData={artist} />
+            ))}
         </div>
     );
 }
